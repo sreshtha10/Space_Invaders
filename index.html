@@ -35,7 +35,7 @@ kaboom({
   global: true,
   plugins: [ peditPlugin, asepritePlugin, kbmspritePlugin ],
 });
-loadKbmsprite("monster", "sprites/monster.kbmsprite");
+
 loadKbmsprite("space-invader", "sprites/space-invader.kbmsprite");
 loadKbmsprite("space-ship", "sprites/space-ship.kbmsprite");
 loadKbmsprite("wall", "sprites/wall.kbmsprite");
@@ -50,6 +50,8 @@ add([
 
 
 });
+
+
 scene("main", (args = {}) => {
 
 const MOVE_SPEED = 200
@@ -84,7 +86,6 @@ addLevel([
   '^': [sprite('space-invader'), scale(1.5),'space-invader'],
   '!': [sprite('wall'), 'left-wall'],
   '&': [sprite('wall'), 'right-wall'],
-  '%':[sprite('monster'),'monster',scale(3)]
 })
 
 
@@ -204,19 +205,6 @@ action('space-invader', (s) => {
     go('lose',{score: score.value})
   }
 })
-
-
-/*
-collides('bullet','monster',(b,m)=>{
-  m.scale = m.scale - 1
-  if(m.scale <= 0){
-     camShake(4)
-     score.value ++
-     score.text = score.value
-  }
-})
-
-*/
 });
 start("main");
 
